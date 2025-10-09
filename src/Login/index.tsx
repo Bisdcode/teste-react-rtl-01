@@ -1,6 +1,6 @@
 import type { FormEvent } from "react"
 import styles from "./styles.module.css"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
     const navigate = useNavigate()
@@ -13,12 +13,13 @@ export default function Login() {
 
     return (
         <div className={styles.container}>
-            <h2>Sign In</h2>
 
-            <form >
+            <form onSubmit={handleSubmit}>
+                <h2>Sign In</h2>
                 <input type="text" placeholder="Insira seu e-mail" />
                 <input type="text" placeholder="Insira sua senha" />
-                <button onClick={handleSubmit}>Login</button>
+                <button type="submit">Login</button>
+                <Link to="/sign-up">Não tem cadastro? Clique aqui!</Link>
             </form>
         </div>
     )
