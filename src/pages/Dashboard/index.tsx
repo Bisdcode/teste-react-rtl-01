@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import styles from "./styles.module.css"
-import type { PokemonType } from "../types/PokemonType"
+import type { PokemonType } from "../../types/PokemonType"
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
     fetchPokemonList: () => Promise<PokemonType[]>;
@@ -8,6 +9,11 @@ interface IProps {
 
 export default function Dashboard({fetchPokemonList}: IProps) {
     const [pokemons, setPokemons] = useState<PokemonType[]>([]);
+    const navigate = useNavigate();
+
+    function handleNavigate(id: number) {
+        navigate(`/pokemon-detail/${id}`);
+    }
     
     useEffect(() => {
         (async () => {
@@ -22,7 +28,7 @@ export default function Dashboard({fetchPokemonList}: IProps) {
 
             <ul className={styles["container-pokemons"]}>
                 {pokemons.map((pokemons) => (
-                    <li key={pokemons.id}>
+                    <li key={pokemons.id} onClick={()=>handleNavigate(pokemons.id)}>
                         <h1>{pokemons.name}</h1>
                         <img src={pokemons.image} alt={pokemons.name} />
                         <strong>{pokemons.type}</strong>

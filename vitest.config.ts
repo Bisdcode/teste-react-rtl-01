@@ -13,13 +13,13 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./src/setupTests.ts"],
     include: ["src/**/*.spec.tsx", "src/**/*.spec.ts", "src/**/*.test.ts"],
-    // coverage: {
-    //   exclude: [
-    //     ...configDefaults.coverage.exclude,
-    //     "*/types/*",
-    //     "src/main.tsx",
-    //   ],
-    // },
+    coverage: {
+      exclude: [
+        ...configDefaults.coverage.exclude,
+        "*/types/*",
+        "src/main.tsx",
+      ],
+    },
   },
   resolve: {
     alias: [{ find: "@", replacement: path.resolve(__dirname, "./src") }],
