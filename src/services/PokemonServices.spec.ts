@@ -35,14 +35,13 @@ describe("Testa o service PokemonService", () => {
     })
 
     test("Verifica se foi feito um get detail para a url correta",async () => {
-        const pokemonDetailResponse: PokemonType = [
+        const pokemonDetailResponse: PokemonType = 
             {
                 id: 1,
                 image: faker.image.url(),
                 name: faker.animal.bear.name,
                 type: faker.animal.type(),
             }
-        ];
 
         fetch.mockResolvedValue(createFetchResponse(pokemonDetailResponse));
 
