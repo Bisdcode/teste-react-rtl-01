@@ -53,7 +53,7 @@ describe("Testa o component de Login", () => {
         expect(inputPassword).toBeInTheDocument();
     })
 
-    test("Deve haver um input para senha", async () => {
+    test("Deve chamar a navegação ao clicar no botão", async () => {
         render(<Login/>)
 
         const button = await screen.findByRole("button");
