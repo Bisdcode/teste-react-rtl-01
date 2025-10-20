@@ -10,7 +10,7 @@ describe('Testa a página de login', () => {
     cy.contains("Dashboard");
   })
 
-  it('Quando clicar em login, deve ir um pokemon Pikachu', () => {
+  it('Quando clicar em login, deve aparecer um pokemon Pikachu', () => {
     cy.visit('/')
 
     cy.intercept("GET", "http://localhost:3000/pokemon", {
