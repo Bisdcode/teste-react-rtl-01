@@ -13,5 +13,14 @@ describe("Testa a página de detalhes do pokemon", () => {
             "src",
             "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"
         )
+
+        cy.get("div").find("div").should(($div) => {
+            expect($div).to.have.length(2);
+
+            const className = $div[0].className;
+            expect(className).to.match(/container/);
+        }).then(($div) => {
+            expect($div).to.have.css("display", "flex");
+        })
     })
 })
