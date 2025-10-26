@@ -6,7 +6,7 @@ describe('Testa a página de login', () => {
       fixture: "pokemons.json",
     })
 
-    cy.contains("Login").click();
+    cy.get("button").click();
     cy.contains("Dashboard");
   })
 
@@ -26,5 +26,27 @@ describe('Testa a página de login', () => {
 
     cy.contains("Não tem cadastro? Clique aqui!").click();
     cy.contains("Cadastre-se");
+  })
+
+  it("O botão deve ter 10px de margin top", () => {
+        cy.visit("/");
+
+        cy.get("div").find("button").should("have.css", "marginTop").and("match", /10px/);
+    })
+
+  it('Refatorado: Quando clicar em login, deve ir para a página Dashboard', () => {
+    cy.visit('/')
+
+    cy.intercept("GET", "http://localhost:3000/pokemon", {
+      fixture: "pokemons.json",
+    })
+    
+    cy.get("div").find("button").should(($button) => {
+      expect($button).to.have.length(1);
+
+      $button[0].click();
+    }).then(() => {
+      cy.contains("Dashboard");
+    })
   })
 })

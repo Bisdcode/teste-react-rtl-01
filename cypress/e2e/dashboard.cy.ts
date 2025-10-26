@@ -45,4 +45,13 @@ describe("Testa a página de Dashboard", () => {
         cy.contains("Charmander");
     })
 
+    it("Deve conter um css com display grid", () => {
+        cy.visit("/dashboard");
+
+        cy.intercept("GET", "http://localhost:3000/pokemon", {
+            fixture: "pokemons.json",
+        });
+
+        cy.get("div").find("ul").should("have.css", "display").and("match", /grid/);
+    })
 })
