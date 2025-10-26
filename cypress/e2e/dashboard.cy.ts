@@ -54,4 +54,24 @@ describe("Testa a página de Dashboard", () => {
 
         cy.get("div").find("ul").should("have.css", "display").and("match", /grid/);
     })
+    
+    it("Deve haver 3 pokemons na tela com li's", () => {
+        cy.visit("/dashboard");
+
+        cy.intercept("GET", "http://localhost:3000/pokemon", {
+            fixture: "pokemons.json",
+        });
+
+        cy.get("div").find("li").should(($li) => {
+            expect($li).to.have.length(3);
+        
+            const pikachu = $li[0];
+            const rotom = $li[1];
+            const charmander = $li[2];
+
+            expect(pikachu.textContent).to.contain("Pikachu");
+            expect(rotom.textContent).to.contain("Rotom");
+            expect(charmander.textContent).to.contain("Charmander");
+        })
+    })
 })
